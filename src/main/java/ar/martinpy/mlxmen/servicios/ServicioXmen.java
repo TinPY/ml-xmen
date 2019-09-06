@@ -8,11 +8,13 @@ import java.util.List;
 public interface ServicioXmen {
 
     Stats obtenerStatsPorId(Long id);
+    Stats obtenerUltimoStats();
     List<Stats> obtenerTodos();
     boolean guardarStats(Stats stats);
 
     Dna obtenerDnaPorId(Long id);
     boolean guardarDna(Dna dna);
+    boolean borrarTodosDna();
 
     boolean isMutant(String[] dna);
 

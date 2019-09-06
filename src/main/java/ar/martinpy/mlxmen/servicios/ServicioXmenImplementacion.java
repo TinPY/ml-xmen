@@ -35,6 +35,24 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    public Stats obtenerUltimoStats() {
+        Stats stats = new Stats(0,0,0.0);
+
+        try{
+            List<Stats> estadisticas = this.repositorioStats.findAll();
+
+            if(!estadisticas.isEmpty()){
+                stats = estadisticas.get(0);
+            }
+            return stats;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return stats;
+        }
+    }
+
+    @Override
     public List<Stats> obtenerTodos() {
         try{
             List<Stats> estadisticas = this.repositorioStats.findAll();
@@ -78,6 +96,17 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     public boolean guardarDna(Dna dna) {
         try{
             this.repositorioDna.save(dna);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean borrarTodosDna() {
+        try{
+            this.repositorioDna.deleteAll();
             return true;
         }catch(Exception e){
             e.printStackTrace();

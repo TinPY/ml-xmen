@@ -36,8 +36,8 @@ public class ControladorXmen {
 
         // GUARDAR STATS
         //* Recuperar Stats Anterior si existe
-        //Stats stats = this.servicioXmen.obtenerStatsPorId(1l);
-        Stats stats = new Stats(123,456,0.2);
+        //Stats stats = new Stats(123,456,0.2);
+        Stats stats = this.servicioXmen.obtenerUltimoStats();
 
         //* count_human_dna ++
         stats.setCount_human_dna(stats.getCount_human_dna() + 1);
@@ -49,8 +49,6 @@ public class ControladorXmen {
         stats.setRatio( stats.getCount_mutant_dna().doubleValue() / stats.getCount_human_dna().doubleValue()) ;
         //* guardar stats
         this.servicioXmen.guardarStats(stats);
-
-        //return ResponseEntity.status(HttpStatus.OK).body(dnaParametro);
 
         if(resultado){
             return ResponseEntity.status(HttpStatus.OK).body(dnaParametro);
@@ -65,17 +63,30 @@ public class ControladorXmen {
     public ResponseEntity<?> stats() {
 
         // Obtener Stats
-        //Stats stats = new Stats(2,10,0.2);
+        Stats stats = this.servicioXmen.obtenerUltimoStats();
 
-        List<Stats> estadisticas = this.servicioXmen.obtenerTodos();
-        if(estadisticas.size() == 0){
-            return ResponseEntity.status(HttpStatus.OK).body(new Stats(0,0,0.0));
-        } else if(estadisticas.size() == 1){
-            return ResponseEntity.status(HttpStatus.OK).body(estadisticas.get(1));
-        }else{
-            return ResponseEntity.status(HttpStatus.OK).body(estadisticas);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(stats);
 
     }
 
+    @RequestMapping(value = "/reiniciarstats", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> reiniciarStats() {
+
+        // Obtener Stats y Setear a 0
+
+        Stats stats = this.servicioXmen.obtenerUltimoStats();
+        stats.setCount_mutant_dna(0);
+        stats.setCount_human_dna(0);
+        stats.setRatio(0.0);
+
+        // Actualizar Stats
+        this.servicioXmen.guardarStats(stats);
+
+        // Borrar todos los Dna
+        this.servicioXmen.borrarTodosDna();
+
+        return ResponseEntity.status(HttpStatus.OK).body(stats);
+
+    }
 }
