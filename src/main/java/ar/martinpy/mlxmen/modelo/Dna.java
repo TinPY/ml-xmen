@@ -12,7 +12,7 @@ public class Dna {
     @Id
     private Long id;
 
-    private List<String> dna = new ArrayList<>();
+    private String[] dna;
 
     private Boolean isMutant = false;
 
@@ -32,11 +32,11 @@ public class Dna {
         isMutant = mutant;
     }
 
-    public List<String> getDna() {
+    public String[] getDna() {
         return dna;
     }
 
-    public void setDna(List<String> dna) {
+    public void setDna(String[] dna) {
         this.dna = dna;
     }
 

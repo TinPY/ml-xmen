@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface RepositorioStats extends DatastoreRepository<Stats, Long> {
 
     Optional<Stats> findById(Long id);
+    List<Stats> findAll();
 
 }

@@ -27,54 +27,55 @@ public class ControladorXmen {
     @ResponseBody
     public ResponseEntity<?> esMutante(@RequestBody Dna dnaParametro) {
 
-        // Recibir DNA
-        //dnaParametro.setMutant(true);
-        
+        // OBTENER DNA y DETECTAR MUTANTE
+        boolean resultado = servicioXmen.isMutant(dnaParametro.getDna());
 
+        // GUARDAR DNA
+        dnaParametro.setMutant(resultado);
+        this.servicioXmen.guardarDna(dnaParametro);
 
-        // Detectar si es mutante
+        // GUARDAR STATS
+        //* Recuperar Stats Anterior si existe
+        //Stats stats = this.servicioXmen.obtenerStatsPorId(1l);
+        Stats stats = new Stats(123,456,0.2);
 
-        // Guardar Dna
+        //* count_human_dna ++
+        stats.setCount_human_dna(stats.getCount_human_dna() + 1);
+        //* if 'resultado' count_mutant_dna++
+        if(resultado){
+            stats.setCount_mutant_dna(stats.getCount_mutant_dna() + 1);
+        }
+        //* re calcular ratio
+        stats.setRatio( stats.getCount_mutant_dna().doubleValue() / stats.getCount_human_dna().doubleValue()) ;
+        //* guardar stats
+        this.servicioXmen.guardarStats(stats);
 
-        // Guardar Stats
+        //return ResponseEntity.status(HttpStatus.OK).body(dnaParametro);
 
-//        Dna dna = new Dna();
-//        List<String> cadenas = new ArrayList<>();
-//        cadenas.add("AACTGA");
-//        cadenas.add("CCCTAA");
-//        cadenas.add("ACTGGG");
-//        cadenas.add("ACGTGA");
-//        cadenas.add("GTTCCA");
-//        cadenas.add("CCCCTG");
-//        dna.setDna(cadenas);
-//
-//        dna.setMutant(true);
-//
-//
-//        if(dna.getDna().size() == 6){
-//            return ResponseEntity.status(HttpStatus.OK).body(dna);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(dnaParametro);
+        if(resultado){
+            return ResponseEntity.status(HttpStatus.OK).body(dnaParametro);
+        }else{
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(dnaParametro);
+        }
 
     }
 
     @RequestMapping(value = "/stats", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<?> esMutante() {
+    public ResponseEntity<?> stats() {
 
-        // Guardar Stats
-//        Stats stats = new Stats(2,10,0.2);
-//
-//        if (this.servicioXmen.guardarStats(stats)) {
-//            return ResponseEntity.status(HttpStatus.OK).body(stats);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-//        }
+        // Obtener Stats
+        //Stats stats = new Stats(2,10,0.2);
 
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        List<Stats> estadisticas = this.servicioXmen.obtenerTodos();
+        if(estadisticas.size() == 0){
+            return ResponseEntity.status(HttpStatus.OK).body(new Stats(0,0,0.0));
+        } else if(estadisticas.size() == 1){
+            return ResponseEntity.status(HttpStatus.OK).body(estadisticas.get(1));
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(estadisticas);
+        }
+
     }
 
 }
