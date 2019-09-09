@@ -20,7 +20,7 @@ public class ControladorXmen {
 
     @RequestMapping("/")
     public String home() {
-        return "Holis!";
+        return "Holanda ML!";
     }
 
     @RequestMapping(value = "/mutant", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)

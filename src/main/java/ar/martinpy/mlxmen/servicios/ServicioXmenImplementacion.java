@@ -1,6 +1,6 @@
 package ar.martinpy.mlxmen.servicios;
 
-import ar.martinpy.mlxmen.componentes.ComponenteDetectorMutante1;
+import ar.martinpy.mlxmen.componentes.ComponenteDetectorMutante;
 import ar.martinpy.mlxmen.modelo.Dna;
 import ar.martinpy.mlxmen.modelo.Stats;
 import ar.martinpy.mlxmen.repositorios.RepositorioDna;
@@ -21,7 +21,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     @Autowired
     RepositorioDna repositorioDna;
 
-    ComponenteDetectorMutante1 detectorMutante1 = new ComponenteDetectorMutante1();
+    ComponenteDetectorMutante detectorMutante1 = new ComponenteDetectorMutante();
 
     @Override
     public Stats obtenerStatsPorId(Long id) {
