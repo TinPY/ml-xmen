@@ -5,26 +5,22 @@ import java.util.Map;
 
 public class GeneradorVectores {
 
-    public static String[] generarArrayEjemploMutanteTamanio6B(){
-        String[] resultado = new String[6];
-        resultado[0] = "ATGAGT";
-        resultado[1] = "CAATCC";
-        resultado[2] = "TAACTT";
-        resultado[3] = "AGCATG";
-        resultado[4] = "CACTTA";
-        resultado[5] = "ACTCTG";
+    public static String[] generarArrayEjemploMutanteTamanio4(){
+        String[] resultado = new String[4];
+        resultado[0] = "ATGA";
+        resultado[1] = "CAAT";
+        resultado[2] = "TAAC";
+        resultado[3] = "AGCA";
 
         return resultado;
     }
 
-    public static String[] generarArrayEjemploMutanteTamanio6C(){
-        String[] resultado = new String[6];
-        resultado[0] = "ATGAGT";
-        resultado[1] = "CAATCC";
-        resultado[2] = "TTTTTC";
-        resultado[3] = "AGCATG";
-        resultado[4] = "CTCTAA";
-        resultado[5] = "ACTCTG";
+    public static String[] generarArrayEjemploNOMutanteTamanio4(){
+        String[] resultado = new String[4];
+        resultado[0] = "ATGA";
+        resultado[1] = "CACT";
+        resultado[2] = "TGAC";
+        resultado[3] = "AGCC";
 
         return resultado;
     }
@@ -53,6 +49,18 @@ public class GeneradorVectores {
         return resultado;
     }
 
+    public static String[] generarArrayTamanio5ParaOutOfRangeException(){
+
+        String[] resultado = new String[5];
+        resultado[0] = "ATC";
+        resultado[1] = "CAGTG";
+        resultado[2] = "TATG";
+        resultado[3] = "AGAAG";
+
+        return resultado;
+
+    }
+
     public static String[] generarArrayEjemploMutanteTamanio5(){
         String[] resultado = new String[5];
         resultado[0] = "ATGCG";
@@ -60,6 +68,17 @@ public class GeneradorVectores {
         resultado[2] = "TTATG";
         resultado[3] = "AGAAG";
         resultado[4] = "CCCCT";
+
+        return resultado;
+    }
+
+    public static String[] generarArrayEjemploNOMutanteTamanio5(){
+        String[] resultado = new String[5];
+        resultado[0] = "ATGCG";
+        resultado[1] = "CAGTG";
+        resultado[2] = "TTCTG";
+        resultado[3] = "AGAAG";
+        resultado[4] = "CACCT";
 
         return resultado;
     }

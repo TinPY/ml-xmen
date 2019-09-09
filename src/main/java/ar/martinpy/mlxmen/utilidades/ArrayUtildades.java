@@ -1,20 +1,30 @@
 package ar.martinpy.mlxmen.utilidades;
 
+import com.google.api.gax.rpc.OutOfRangeException;
+
 public class ArrayUtildades {
 
-    public static char[][] convertirVectorStringsACharArray(String[] vector){
+    public static char[][] convertirVectorStringsACharArray(String[] vector) throws OutOfRangeException{
 
         char[][] resultado = new char[vector.length][vector.length];
 
-        for(int i=0; i<vector.length;i++){
-
-            char[] cadena = vector[i].toCharArray();
-
-            for(int j = 0 ; j<cadena.length ; j++){
-                resultado[i][j] = cadena[j];
+        try{
+            for(int i=0; i<vector.length;i++){
+                char[] caracter = vector[i].toCharArray();
+                for(int j = 0 ; j<caracter.length ; j++){
+                    resultado[i][j] = caracter[j];
+                }
             }
+            return resultado;
+        }catch(OutOfRangeException ore){
+            ore.printStackTrace();
+            return null;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
         }
-        return resultado;
+
+
 
     }
 
