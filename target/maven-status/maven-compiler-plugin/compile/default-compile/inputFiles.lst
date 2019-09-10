@@ -1,10 +1,12 @@
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\modelo\Stats.java
+C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\utilidades\ArrayUtildades.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\controladores\ControladorXmen.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\repositorios\RepositorioDna.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\modelo\Dna.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\repositorios\RepositorioStats.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\servicios\ServicioXmenImplementacion.java
-C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\componentes\ComponenteDetectorMutante1.java
+C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\componentes\ComponenteDetectorMutante.java
+C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\utilidades\GeneradorVectores.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\servicios\ServicioXmen.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\MLxmenAplicacion.java
 C:\Repositorios\ml-xmen\src\main\java\ar\martinpy\mlxmen\ServletInitializer.java

@@ -1,7 +1,12 @@
-ar\martinpy\mlxmen\modelo\Dna.class
-ar\martinpy\mlxmen\componentes\ComponenteDetectorMutante1.class
+ar\martinpy\mlxmen\componentes\ComponenteDetectorMutante.class
 ar\martinpy\mlxmen\controladores\ControladorXmen.class
+ar\martinpy\mlxmen\repositorios\RepositorioDna.class
+ar\martinpy\mlxmen\servicios\ServicioXmenImplementacion.class
+ar\martinpy\mlxmen\modelo\Stats.class
+ar\martinpy\mlxmen\repositorios\RepositorioStats.class
+ar\martinpy\mlxmen\MLxmenAplicacion.class
+ar\martinpy\mlxmen\utilidades\GeneradorVectores.class
+ar\martinpy\mlxmen\modelo\Dna.class
+ar\martinpy\mlxmen\utilidades\ArrayUtildades.class
 ar\martinpy\mlxmen\servicios\ServicioXmen.class
 ar\martinpy\mlxmen\ServletInitializer.class
-ar\martinpy\mlxmen\modelo\Stats.class
-ar\martinpy\mlxmen\MLxmenAplicacion.class
