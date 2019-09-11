@@ -2,11 +2,7 @@ package ar.martinpy.mlxmen.componentes;
 
 
 import ar.martinpy.mlxmen.utilidades.ArrayUtildades;
-import com.google.api.gax.rpc.OutOfRangeException;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class ComponenteDetectorMutante {
@@ -14,10 +10,17 @@ public class ComponenteDetectorMutante {
     public ComponenteDetectorMutante() {
     }
 
-    public boolean isMutant(String[] dna) throws OutOfRangeException {
+    public boolean isMutant(String[] dna) {
+
+        char[][] arrayDna;
 
         // Preparacion
-        char[][] arrayDna = ArrayUtildades.convertirVectorStringsACharArray(dna);
+        try{
+            arrayDna = ArrayUtildades.convertirVectorStringCuadradoACharArrayCuadrado(dna);
+        }catch(ArrayIndexOutOfBoundsException aiob){
+            //aiob.printStackTrace();
+            return false;
+        }
 
         int n = arrayDna.length;
         int tamañoPatron = 4;
@@ -182,10 +185,8 @@ public class ComponenteDetectorMutante {
             if(i>=3){
                 jd--;
             }
-
         }
 
         return false;
     }
-
 }

@@ -1,17 +1,13 @@
 package ar.martinpy.mlxmen.componentes;
 
 import ar.martinpy.mlxmen.utilidades.GeneradorVectores;
-import com.google.api.gax.rpc.OutOfRangeException;
-import org.assertj.core.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -84,17 +80,18 @@ public class ComponenteDetectorMutanteTest {
         Assert.assertFalse(resultado);
     }
 
-//    @Test(expected = OutOfRangeException.class)
-//    @Test
-//    public void isMutante_arrayNoCuadrado_retornaFalso(){
-//        String[] vectorPrueba = GeneradorVectores.generarArrayTamanio5ParaOutOfRangeException();
-//
-//        //Assertions.assertThrows(OutOfRangeException.class, () -> this.componenteDetectorMutante.isMutant(vectorPrueba));
-//
-//        boolean resultado = this.componenteDetectorMutante.isMutant(vectorPrueba);
-//
-//        Assert.assertTrue(resultado);
-//    }
+    //@Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test
+    public void isMutante_arrayNoCuadrado_retornaFalso(){
+
+        String[] vectorPrueba = GeneradorVectores.generarArrayTamanio5ParaOutOfRangeException();
+
+        //Assertions.assertThrows(OutOfRangeException.class, () -> this.componenteDetectorMutante.isMutant(vectorPrueba));
+
+        boolean resultado = this.componenteDetectorMutante.isMutant(vectorPrueba);
+
+        Assert.assertFalse(resultado);
+    }
 
 
 }
