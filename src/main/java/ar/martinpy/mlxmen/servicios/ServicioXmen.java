@@ -13,6 +13,7 @@ public interface ServicioXmen {
     boolean guardarStats(Stats stats);
 
     Dna obtenerDnaPorId(Long id);
+    List<Dna> obtenerTodosDna();
     boolean guardarDna(Dna dna);
     boolean borrarTodosDna();
 

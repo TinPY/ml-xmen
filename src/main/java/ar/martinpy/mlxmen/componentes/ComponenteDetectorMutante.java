@@ -23,8 +23,9 @@ public class ComponenteDetectorMutante {
         }
 
         int n = arrayDna.length;
-        int tamañoPatron = 4;
-        int k = n - tamañoPatron; // para 6 == 2  | para 5 == 1
+        int tamañoPatron = 4;                   // tamaño de la palabra (en este caso 4 letras)
+        int posicionPatron = tamañoPatron - 1;  // para las diagonales arriba-izq hacia abajo-der
+        int k = n - tamañoPatron;               // para 5 == 1 | para 6 == 2  | etc...
         int jd = k;
 
         int secuenciasMutantes = 0;
@@ -71,7 +72,7 @@ public class ComponenteDetectorMutante {
                 // HORIZONTAL
                 if(arrayDna[i][j] == letraAnteriorHorizontal){
                     if(++contadorLetrasHorizontal == 4){
-                        System.out.println("ENCONTRADO EN HORIZONTAL");
+                        //System.out.println("ENCONTRADO EN HORIZONTAL");
                         if(++secuenciasMutantes > 1){
                             return true;
                         }
@@ -84,7 +85,7 @@ public class ComponenteDetectorMutante {
                 // VERTICAL
                 if(arrayDna[j][i] == letraAnteriorVertical){
                     if(++contadorLetrasVertical == 4){
-                        System.out.println("ENCONTRADO EN VERTICAL");
+                        //System.out.println("ENCONTRADO EN VERTICAL");
                         if(++secuenciasMutantes > 1){
                             return true;
                         }
@@ -99,7 +100,7 @@ public class ComponenteDetectorMutante {
                 if(i==0){
                     if(arrayDna[j][j] == letraAnteriorDiagonalPrincipal){
                         if(++contadorLetrasDiagonalPrincipal == 4){
-                            System.out.println("ENCONTRADO EN DIAGONAL PRINCIPAL");
+                            //System.out.println("ENCONTRADO EN DIAGONAL PRINCIPAL");
                             if(++secuenciasMutantes > 1){
                                 return true;
                             }
@@ -115,7 +116,7 @@ public class ComponenteDetectorMutante {
                 if(i>=1 && i<=k && (i+j)<=n-1 ){
                     if(arrayDna[i+j][j] == letraAnteriorIzquierda){
                         if(++contadorLetrasIzquierda == 4){
-                            System.out.println("ENCONTRADO EN DIAGONAL \\ IZQUIERDA");
+                            //System.out.println("ENCONTRADO EN DIAGONAL \\ IZQUIERDA");
                             if(++secuenciasMutantes > 1){
                                 return true;
                             }
@@ -128,7 +129,7 @@ public class ComponenteDetectorMutante {
 
                     if(arrayDna[j][i+j] == letraAnteriorDerecha){
                         if(++contadorLetrasDerecha == 4){
-                            System.out.println("ENCONTRADO EN DIAGONAL \\ DERECHA");
+                            //System.out.println("ENCONTRADO EN DIAGONAL \\ DERECHA");
                             if(++secuenciasMutantes > 1){
                                 return true;
                             }
@@ -142,11 +143,11 @@ public class ComponenteDetectorMutante {
                 }
 
                 //DIAGONAL / ARRIBA Y PRINCIPAL
-                if(i>= 3 && i-j >= 0){
+                if(i>= posicionPatron && i-j >= 0){
                     int filaArriba = i-j;
                     if(arrayDna[filaArriba][j] == letraAnteriorArriba){
                         if(++contadorLetrasArriba == 4){
-                            System.out.println("ENCONTRADO EN DIAGONAL / ARRIBA O PRINCIPAL");
+                            //System.out.println("ENCONTRADO EN DIAGONAL / ARRIBA O PRINCIPAL");
                             if(++secuenciasMutantes > 1){
                                 return true;
                             }
@@ -160,7 +161,7 @@ public class ComponenteDetectorMutante {
                 }
 
                 //DIAGONAL / ABAJO
-                if(i>= 3 && jd+j < n){
+                if(i>= posicionPatron && jd+j < n){
                     int columnaAbajo = jd+j;
                     filaAbajo = filaAbajo-j;
 
@@ -168,7 +169,7 @@ public class ComponenteDetectorMutante {
                     if(columnaAbajo + filaAbajo >= n){
                         if(arrayDna[filaAbajo][columnaAbajo] == letraAnteriorAbajo){
                             if(++contadorLetrasAbajo == 4){
-                                System.out.println("ENCONTRADO EN DIAGONAL / ABAJO");
+                                //System.out.println("ENCONTRADO EN DIAGONAL / ABAJO");
                                 if(++secuenciasMutantes > 1){
                                     return true;
                                 }
@@ -182,7 +183,7 @@ public class ComponenteDetectorMutante {
                 }
             }
 
-            if(i>=3){
+            if(i>=posicionPatron){
                 jd--;
             }
         }

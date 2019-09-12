@@ -58,6 +58,12 @@ public class ControladorXmen {
 
     }
 
+    @RequestMapping(value = "/dna", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<?> mutantes() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.servicioXmen.obtenerTodosDna());
+    }
+
     @RequestMapping(value = "/stats", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<?> stats() {

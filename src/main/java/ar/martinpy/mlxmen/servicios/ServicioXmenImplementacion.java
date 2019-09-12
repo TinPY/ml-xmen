@@ -6,11 +6,16 @@ import ar.martinpy.mlxmen.modelo.Stats;
 import ar.martinpy.mlxmen.repositorios.RepositorioDna;
 import ar.martinpy.mlxmen.repositorios.RepositorioStats;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
 
 @Service
 public class ServicioXmenImplementacion implements ServicioXmen {
@@ -21,9 +26,11 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     @Autowired
     RepositorioDna repositorioDna;
 
-    ComponenteDetectorMutante detectorMutante1 = new ComponenteDetectorMutante();
+    @Autowired
+    ComponenteDetectorMutante componenteDetectorMutante;
 
     @Override
+    @Transactional(readOnly = true)
     public Stats obtenerStatsPorId(Long id) {
         Optional<Stats> stats = this.repositorioStats.findById(id);
 
@@ -35,6 +42,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Stats obtenerUltimoStats() {
         Stats stats = new Stats(0,0,0.0);
 
@@ -53,6 +61,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Stats> obtenerTodos() {
         try{
             List<Stats> estadisticas = this.repositorioStats.findAll();
@@ -69,6 +78,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional
     public boolean guardarStats(Stats stats) {
         try{
             this.repositorioStats.save(stats);
@@ -80,6 +90,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Dna obtenerDnaPorId(Long id) {
 
         Optional<Dna> dna = this.repositorioDna.findById(id);
@@ -93,7 +104,15 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Dna> obtenerTodosDna() {
+        return this.repositorioDna.findAll();
+    }
+
+    @Override
+    @Transactional
     public boolean guardarDna(Dna dna) {
+
         try{
             this.repositorioDna.save(dna);
             return true;
@@ -104,6 +123,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
+    @Transactional
     public boolean borrarTodosDna() {
         try{
             this.repositorioDna.deleteAll();
@@ -117,7 +137,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     @Override
     public boolean isMutant(String[] dna) {
 
-        return detectorMutante1.isMutant(dna);
+        return componenteDetectorMutante.isMutant(dna);
 
     }
 

@@ -10,5 +10,6 @@ import org.springframework.cloud.gcp.data.datastore.repository.DatastoreReposito
 public interface RepositorioDna extends DatastoreRepository<Dna, Long> {
 
     Optional<Dna> findById(Long id);
+    List<Dna> findAll();
 
 }
