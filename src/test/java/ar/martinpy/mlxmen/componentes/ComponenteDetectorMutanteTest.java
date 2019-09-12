@@ -80,8 +80,7 @@ public class ComponenteDetectorMutanteTest {
         Assert.assertFalse(resultado);
     }
 
-    //@Test(expected = ArrayIndexOutOfBoundsException.class)
-    @Test
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void isMutante_arrayNoCuadrado_retornaFalso(){
 
         String[] vectorPrueba = GeneradorVectores.generarArrayTamanio5ParaOutOfRangeException();

@@ -10,17 +10,21 @@ public class ComponenteDetectorMutante {
     public ComponenteDetectorMutante() {
     }
 
-    public boolean isMutant(String[] dna) {
+    public boolean isMutant(String[] dna) throws ArrayIndexOutOfBoundsException {
 
         char[][] arrayDna;
 
         // Preparacion
-        try{
-            arrayDna = ArrayUtildades.convertirVectorStringCuadradoACharArrayCuadrado(dna);
-        }catch(ArrayIndexOutOfBoundsException aiob){
-            //aiob.printStackTrace();
-            return false;
-        }
+//        try{
+//            arrayDna = ArrayUtildades.convertirVectorStringCuadradoACharArrayCuadrado(dna);
+//        }catch(ArrayIndexOutOfBoundsException aiob){
+//            //aiob.printStackTrace();
+//            return false;
+//        }
+
+        arrayDna = ArrayUtildades.convertirVectorStringCuadradoACharArrayCuadrado(dna);
+
+
 
         int n = arrayDna.length;
         int tamañoPatron = 4;                   // tamaño de la palabra (en este caso 4 letras)

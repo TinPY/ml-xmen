@@ -28,7 +28,18 @@ public class ControladorXmen {
     public ResponseEntity<?> esMutante(@RequestBody Dna dnaParametro) {
 
         // OBTENER DNA y DETECTAR MUTANTE
-        boolean resultado = servicioXmen.isMutant(dnaParametro.getDna());
+        boolean resultado;
+
+        try{
+            resultado = servicioXmen.isMutant(dnaParametro.getDna());
+        }catch(ArrayIndexOutOfBoundsException aiobe){
+            //aiobe.printStackTrace();
+            System.out.println("ArrayIndexOutOfBoundsException");
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(dnaParametro);
+        }catch(Exception e){
+            //resultado = false;
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(dnaParametro);
+        }
 
         // GUARDAR DNA
         dnaParametro.setMutant(resultado);

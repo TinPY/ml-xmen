@@ -6,16 +6,12 @@ import ar.martinpy.mlxmen.modelo.Stats;
 import ar.martinpy.mlxmen.repositorios.RepositorioDna;
 import ar.martinpy.mlxmen.repositorios.RepositorioStats;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
 
 @Service
 public class ServicioXmenImplementacion implements ServicioXmen {
@@ -135,7 +131,7 @@ public class ServicioXmenImplementacion implements ServicioXmen {
     }
 
     @Override
-    public boolean isMutant(String[] dna) {
+    public boolean isMutant(String[] dna) throws ArrayIndexOutOfBoundsException {
 
         return componenteDetectorMutante.isMutant(dna);
 
